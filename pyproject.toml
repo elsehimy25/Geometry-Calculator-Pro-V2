@@ -1,0 +1,18 @@
+[project]
+name = "geometry-calculator-pro"
+version = "1.1.0"
+description = "Geometry Calculator Pro Android App"
+requires-python = ">=3.10"
+dependencies = [
+    "flet[all]>=0.80.0",
+]
+
+[tool.flet]
+org = "com.geometrycalculator"
+product = "Geometry Calculator Pro"
+company = "Geometry Calculator"
+copyright = "Copyright (C) 2026"
+
+[tool.flet.android]
+min_sdk_version = 24
+adaptive_icon_background = "#102A43"
