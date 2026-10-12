@@ -1,0 +1,35 @@
+name: Build Geometry Calculator Pro APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v6
+
+      - name: Build Android APK
+        id: build
+        uses: flet-dev/flet-build-action@v1
+        with:
+          target: apk
+          runner-python-version: "3.14"
+          bundled-python-version: "3.14"
+          build-version: "1.1.0"
+          build-number: ${{ github.run_number }}
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: GeometryCalculatorPro-APK
+          path: ${{ steps.build.outputs.archive-path }}
+          archive: false
+          if-no-files-found: error
+          retention-days: 7
